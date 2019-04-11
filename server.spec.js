@@ -13,6 +13,13 @@ describe('Users', () => {
       const response = await request(server).get('/users');
       expect(response.type).toBe('application/json');
     });
+
+    it('should return all records', async () => {
+      const recordsCount = db.getAll().length;
+      const response = await request(server).get('/users');
+      console.log();
+      expect(response.body.length).toEqual(recordsCount);
+    });
   });
 
   describe('POST /users', () => {
